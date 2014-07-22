@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.ui.theme" value="simple" />
+	<constant name="struts.multipart.maxSize" value="52429300" />
+
+
+	<package name="default" namespace="/" extends="struts-default">
+		<default-action-ref name="home" />
+		<action name="index">
+			<result>index.jsp</result>
+		</action>
+
+		<action name="login_*" method="{1}"
+			class="sunflower.user.action.LoginAction">
+			<result name="home">/home.jsp</result>
+			<!-- <result name="home" type="redirect">user_viewInfo.action</result> -->
+			<result name="login">/login.jsp</result>
+		</action>
+		<action name="user_*" method="{1}" class="sunflower.user.action.UserAction">
+			<result name="personalinfo">/secure/user/personalinfo.jsp</result>
+		</action>
+		<action name="sale_*" method="{1}"
+			class="sunflower.sales.action.SaleAction">
+			<result name="chancelist">/secure/sales/chanceList.jsp</result>
+			<result name="designatedChanceList">/secure/sales/designatedChanceList.jsp</result>
+			<result name="createChance">/secure/sales/createChance.jsp</result>
+			<result name="viewChancelist" type="redirect">sale_viewChancelist.action
+			</result>
+			<result name="editChance">/secure/sales/editChance.jsp</result>
+			<result name="detailInfo">/secure/sales/detailInfo.jsp</result>
+			<result name="designate">/secure/sales/designate.jsp</result>
+			<result name="viewDesignate" type="redirect">sale_viewDesignate.action
+			</result>
+			<result name="planListforDirector">/secure/sales/planListforDirector.jsp</result>
+
+		</action>
+		<action name="plan_*" method="{1}"
+			class="sunflower.sales.action.PlanAction">
+			<result name="planListforDirector">/secure/sales/planListforDirector.jsp</result>
+			<result name="createPlan">/secure/sales/createPlan.jsp</result>
+
+		</action>
+		<action name="business_*" method="{1}"
+			class="sunflower.business.action.BusinessAction">
+			<result name="businessList">/secure/business/businessList.jsp</result>
+			<result name="businessDetails">/secure/business/businessDetails.jsp</result>
+
+		</action>
+	</package>
+
+	<!-- Add packages here -->
+</struts>
